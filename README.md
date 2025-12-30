@@ -128,6 +128,97 @@ Frontend will run at:
 
 ---
 
+## 📡 API Documentation
+
+**Base URL:** `https://user-management-system-9wrt.onrender.com`
+
+### 1. Authentication
+
+#### Register a new user
+* **Endpoint:** `/api/auth/register`
+* **Method:** `POST`
+* **Body:**
+    ```json
+    {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "securePassword123"
+    }
+    ```
+* **Success Response (201):**
+    ```json
+    {
+      "message": "User registered successfully",
+      "user": { "id": "...", "email": "john@example.com" }
+    }
+    ```
+
+#### Login
+* **Endpoint:** `/api/auth/login`
+* **Method:** `POST`
+* **Body:**
+    ```json
+    {
+      "email": "john@example.com",
+      "password": "securePassword123"
+    }
+    ```
+* **Success Response (200):**
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsIn...",
+      "user": { "id": "...", "name": "John Doe" }
+    }
+    ```
+
+---
+
+### 2. User Management
+*Note: These endpoints require the JWT token in the header.*
+
+**Headers:**
+`Authorization: Bearer <your_token_here>`
+
+#### Get All Users
+* **Endpoint:** `/api/users`
+* **Method:** `GET`
+* **Success Response (200):**
+    ```json
+    [
+      {
+        "_id": "654321...",
+        "name": "John Doe",
+        "email": "john@example.com"
+      },
+      {
+        "_id": "123456...",
+        "name": "Jane Smith",
+        "email": "jane@example.com"
+      }
+    ]
+    ```
+
+#### Update User
+* **Endpoint:** `/api/users/:id`
+* **Method:** `PUT`
+* **Body:** (fields to update)
+    ```json
+    {
+      "name": "Johnathan Doe"
+    }
+    ```
+
+#### Delete User
+* **Endpoint:** `/api/users/:id`
+* **Method:** `DELETE`
+* **Success Response (200):**
+    ```json
+    {
+      "message": "User deleted successfully"
+    }
+    ```
+--- 
+
 ## 🔒 Security Features
 
 - Passwords hashed using **Bcrypt**
