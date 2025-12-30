@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 text-white shadow-lg">
+    <nav className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link to="/" className="text-xl font-bold text-indigo-400 hover:text-indigo-300">
           Mini User Management System
