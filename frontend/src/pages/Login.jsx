@@ -11,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    console.log(e, "handleSubmit called");
     e.preventDefault();
     try {
       const { data } = await API.post("/auth/login", { email, password });
