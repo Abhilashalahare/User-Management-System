@@ -108,6 +108,26 @@ Frontend will run at:
 
 ---
 
+### Backend (Render)
+1. **Create a Web Service:** Go to [Render](https://render.com/) and create a new Web Service.
+2. **Connect Repository:** Link the GitHub repository containing your backend code.
+3. **Configure Settings:**
+   * **Build Command:** `npm install`
+   * **Start Command:** `node index.js`
+4. **Environment Variables:** Navigate to the "Environment" tab and add the following secrets:
+   * `MONGO_URI`
+   * `JWT_SECRET`
+
+### Frontend (Vercel)
+1. **Import Project:** Go to [Vercel](https://vercel.com/) and import your frontend repository.
+2. **Framework Preset:** Ensure "Vite" is selected.
+3. **Environment Variables:** Add the backend URL to connect the two services.
+   * **Key:** `VITE_API_URL`
+   * **Value:** `https://user-management-system-9wrt.onrender.com`
+4. **Deploy:** Click "Deploy" to publish the frontend.
+
+---
+
 ## 🔒 Security Features
 
 - Passwords hashed using **Bcrypt**
