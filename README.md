@@ -1,4 +1,4 @@
-# 👤 Mini User Management System (RBAC)
+# 👤 Mini User Management System 
 
 ![MERN Stack](https://img.shields.io/badge/MERN-Stack-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
@@ -13,9 +13,11 @@ The system provides secure authentication, user profile management, and an admin
 
 ### Admin Dashboard
 Admin panel to view all users, paginate records, edit user details, and toggle active/inactive status.
+![Admin Dashboard Screenshot](./screenshots/admin-dashboard.png)
 
 ### User Profile
 User interface to view and edit profile details with secure password update functionality.
+![User Profile Screenshot](./screenshots/user-dashboard.png)
 
 ---
 
