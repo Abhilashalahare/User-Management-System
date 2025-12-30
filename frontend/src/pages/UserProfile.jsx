@@ -7,36 +7,30 @@ import { FaUser, FaEnvelope, FaIdBadge, FaEdit, FaSave, FaTimes, FaLock } from "
 const UserProfile = () => {
   const { user, login } = useContext(AuthContext);
   
-  // Toggle for Edit Mode
   const [isEditing, setIsEditing] = useState(false);
   
-  // Toggle for Password Section (Keep it hidden by default)
   const [showPasswordChange, setShowPasswordChange] = useState(false);
 
-  // Form States
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: ""
   });
 
-  // Load user data when component mounts
   useEffect(() => {
     if (user) {
       setFormData({
         fullName: user.fullName,
         email: user.email,
-        password: "" // Always start empty for security
+        password: "" 
       });
     }
   }, [user]);
 
-  // Handle Input Change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Submit Updates
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -45,17 +39,15 @@ const UserProfile = () => {
         email: formData.email 
       };
       
-      // Only add password to request if user actually typed one
       if (formData.password.trim() !== "") {
         updates.password = formData.password;
       }
 
       const { data } = await API.put("/users/profile", updates);
       
-      login(data, data.token); // Update context
+      login(data, data.token); 
       toast.success("Profile updated successfully!");
       
-      // Exit Edit Mode & Clean up
       setIsEditing(false);
       setShowPasswordChange(false);
       setFormData(prev => ({ ...prev, password: "" }));
@@ -69,7 +61,6 @@ const UserProfile = () => {
     <div className="container mx-auto mt-10 px-4">
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300">
         
-        {/* --- Header Section --- */}
         <div className=" bg-indigo-600 px-8 py-6 flex justify-between items-center text-white">
           <div>
             <h2 className="text-3xl font-bold flex items-center gap-3">
@@ -78,7 +69,6 @@ const UserProfile = () => {
             <p className="text-indigo-100 mt-1 opacity-90">Manage your personal information</p>
           </div>
           
-          {/* Edit/Cancel Button */}
           {!isEditing ? (
             <button 
               onClick={() => setIsEditing(true)}
@@ -96,14 +86,11 @@ const UserProfile = () => {
           )}
         </div>
 
-        {/* --- Main Content --- */}
         <div className="p-8">
           <form onSubmit={handleUpdate}>
             
-            {/* Grid Layout for Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               
-              {/* Field: Full Name */}
               <div className="space-y-2">
                 <label className="text-gray-500 text-sm font-semibold uppercase tracking-wide flex items-center gap-2">
                   <FaUser /> Full Name
@@ -123,7 +110,6 @@ const UserProfile = () => {
                 )}
               </div>
 
-              {/* Field: Email */}
               <div className="space-y-2">
                 <label className="text-gray-500 text-sm font-semibold uppercase tracking-wide flex items-center gap-2">
                   <FaEnvelope /> Email Address
@@ -143,7 +129,6 @@ const UserProfile = () => {
                 )}
               </div>
 
-              {/* Field: Role (Always Read-Only) */}
               <div className="space-y-2">
                 <label className="text-gray-500 text-sm font-semibold uppercase tracking-wide">Role</label>
                 <div className="flex items-center gap-2">
@@ -153,7 +138,6 @@ const UserProfile = () => {
                 </div>
               </div>
 
-              {/* Field: Status (Always Read-Only) */}
               <div className="space-y-2">
                 <label className="text-gray-500 text-sm font-semibold uppercase tracking-wide">Account Status</label>
                 <div className="flex items-center gap-2">
@@ -164,7 +148,6 @@ const UserProfile = () => {
               </div>
             </div>
 
-            {/* --- Password Change Section (Only in Edit Mode) --- */}
             {isEditing && (
               <div className="border-t pt-6 mt-6">
                  {!showPasswordChange ? (
@@ -208,7 +191,6 @@ const UserProfile = () => {
               </div>
             )}
 
-            {/* --- Save Button --- */}
             {isEditing && (
               <div className="mt-8 flex justify-end">
                 <button

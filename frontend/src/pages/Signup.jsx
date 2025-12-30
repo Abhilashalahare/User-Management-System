@@ -81,7 +81,7 @@ const Signup = () => {
               onChange={handlePasswordChange} 
               required 
             />
-            {/* Validation Checklist */}
+           
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-gray-500">
                <ValidationItem valid={validations.length} text="8+ Characters" />
                <ValidationItem valid={validations.case} text="Upper & Lowercase" />
@@ -90,7 +90,6 @@ const Signup = () => {
             </div>
           </div>
 
-          {/* 4. New Confirm Password Field */}
           <div>
             <label className="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
             <input 

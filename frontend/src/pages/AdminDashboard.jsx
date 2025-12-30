@@ -12,6 +12,7 @@ const AdminDashboard = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
   const [formData, setFormData] = useState({ fullName: "", email: "" });
+  
 
   const fetchUsers = async (pageNum) => {
     try {
@@ -64,7 +65,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         
-        {/* Dashboard Header */}
+        
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
@@ -72,14 +73,14 @@ const AdminDashboard = () => {
             </h1>
             <p className="mt-1 text-gray-500">Manage your users, roles, and account statuses.</p>
           </div>
-          {/* Decorative Stat (Optional) */}
+        
           <div className="mt-4 md:mt-0 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
              <span className="text-gray-500 text-sm">Total Users: </span>
              <span className="text-indigo-600 font-bold">{users.length > 0 ? "Loaded" : "0"}</span>
           </div>
         </div>
 
-        {/* Users Table Card */}
+      
         <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
@@ -95,7 +96,6 @@ const AdminDashboard = () => {
                 {users.map((user) => (
                   <tr key={user._id} className="hover:bg-indigo-50/30 transition duration-150">
                     
-                    {/* User Info with Avatar Placeholder */}
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-md">
@@ -108,14 +108,12 @@ const AdminDashboard = () => {
                       </div>
                     </td>
 
-                    {/* Role Badge */}
                     <td className="px-6 py-4 whitespace-nowrap text-center">
                       <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800 border border-purple-200">
                         {user.role}
                       </span>
                     </td>
 
-                    {/* Status Toggle Badge */}
                     <td className="px-6 py-4 whitespace-nowrap text-center">
                        <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${
                          user.status === 'active' 
@@ -126,7 +124,6 @@ const AdminDashboard = () => {
                       </span>
                     </td>
 
-                    {/* Action Buttons */}
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <div className="flex items-center justify-end space-x-3">
                         <button 
@@ -162,7 +159,6 @@ const AdminDashboard = () => {
             </table>
           </div>
           
-          {/* Pagination Footer */}
           <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
             <button 
               onClick={() => setPage(page - 1)} 
@@ -183,11 +179,9 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* --- REUSE YOUR EXISTING MODAL CODE HERE (It's already functional) --- */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 animate-fade-in">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all scale-100">
-            {/* Modal Header */}
             <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4 flex justify-between items-center text-white">
               <h3 className="font-bold text-lg flex items-center gap-2">
                 <FaUserEdit /> Edit User
@@ -197,7 +191,6 @@ const AdminDashboard = () => {
               </button>
             </div>
             
-            {/* Modal Form */}
             <form onSubmit={handleUpdateUser} className="p-6 space-y-5">
               <div>
                 <label className="block text-gray-700 text-sm font-bold mb-2">Full Name</label>
