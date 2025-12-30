@@ -1,16 +1,14 @@
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useState } from "react";
 import API from "../api";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
-
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   
-
   const [validations, setValidations] = useState({
     length: false,
     case: false,
@@ -18,32 +16,38 @@ const Signup = () => {
     special: false
   });
 
-  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const handlePasswordChange = (e) => {
+    const val = e.target.value;
+    setPassword(val);
     setValidations({
-      length: password.length >= 8,
-      case: /[a-z]/.test(password) && /[A-Z]/.test(password),
-      number: /\d/.test(password),
-      special: /[!@#$%^&*]/.test(password)
+      length: val.length >= 8,
+      case: /[a-z]/.test(val) && /[A-Z]/.test(val),
+      number: /\d/.test(val),
+      special: /[!@#$%^&*]/.test(val)
     });
-  }, [password]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match!");
+      return;
+    }
+
     if (!Object.values(validations).every(Boolean)) {
       toast.error("Please meet all password requirements.");
       return;
     }
 
     try {
-      const { data } = await API.post("/auth/signup", { fullName, email, password });
-      const { token, ...userData } = data;
-      login(userData, token); 
-      toast.success("Account created successfully!");
-      navigate("/profile");
+      await API.post("/auth/signup", { fullName, email, password });
+      
+      toast.success("Signup successful! Please login.");
+      navigate("/login"); 
+      
     } catch (err) {
        if (err.response?.data?.errors) {
          toast.error(err.response.data.errors[0].msg);
@@ -74,16 +78,28 @@ const Signup = () => {
               type="password" 
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500" 
               value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
+              onChange={handlePasswordChange} 
               required 
             />
-            
+            {/* Validation Checklist */}
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-gray-500">
                <ValidationItem valid={validations.length} text="8+ Characters" />
                <ValidationItem valid={validations.case} text="Upper & Lowercase" />
                <ValidationItem valid={validations.number} text="One Number" />
                <ValidationItem valid={validations.special} text="Special Char (!@#$)" />
             </div>
+          </div>
+
+          {/* 4. New Confirm Password Field */}
+          <div>
+            <label className="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
+            <input 
+              type="password" 
+              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 ${confirmPassword && password !== confirmPassword ? 'border-red-500' : ''}`}
+              value={confirmPassword} 
+              onChange={(e) => setConfirmPassword(e.target.value)} 
+              required 
+            />
           </div>
 
           <button type="submit" className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300">Sign Up</button>
