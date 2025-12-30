@@ -1,0 +1,252 @@
+{
+	"info": {
+		"_postman_id": "af7f17c9-84bd-46de-98e4-4c2d4ba1a3a2",
+		"name": "User Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43671521",
+		"_collection_link": "https://abhilasha-9891740.postman.co/workspace/Abhilasha-'s-Workspace~d37eaa9d-82c8-4c76-8289-54ee4d6f6b9e/collection/43671521-af7f17c9-84bd-46de-98e4-4c2d4ba1a3a2?action=share&source=collection_link&creator=43671521"
+	},
+	"item": [
+		{
+			"name": "User Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fullName\": \"Mayank\",\r\n  \"email\": \"mayank@gmail.com\",\r\n  \"password\": \"Password@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/auth/signup",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"mayank@example.com\",\r\n  \"password\": \"Password@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NTNmOWI4MDkyMGVlZmE2NWM5MDcyYiIsImlhdCI6MTc2NzExMTY0MiwiZXhwIjoxNzY3MTk4MDQyfQ.Pd1HantHoQIx3r0Znphd3qDMvAXYvWa4kc5zEsb5UPY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/users?page=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update My Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NTNmOWI4MDkyMGVlZmE2NWM5MDcyYiIsImlhdCI6MTc2NzExMTY0MiwiZXhwIjoxNzY3MTk4MDQyfQ.Pd1HantHoQIx3r0Znphd3qDMvAXYvWa4kc5zEsb5UPY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fullName\": \"Mayank Jain\",\r\n  \"email\": \"mayank@example.com\",\r\n  \"password\": \"Password@123\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/users/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NTNmOWI4MDkyMGVlZmE2NWM5MDcyYiIsImlhdCI6MTc2NzExMTY0MiwiZXhwIjoxNzY3MTk4MDQyfQ.Pd1HantHoQIx3r0Znphd3qDMvAXYvWa4kc5zEsb5UPY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fullName\": \"Jayant Kumar\",\r\n  \"email\": \"j@gmail.com\"\r\n   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/users/6953d7e7f79ce83769e8ccf0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"6953d7e7f79ce83769e8ccf0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deactivate User",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NTNmOWI4MDkyMGVlZmE2NWM5MDcyYiIsImlhdCI6MTc2NzExMTY0MiwiZXhwIjoxNzY3MTk4MDQyfQ.Pd1HantHoQIx3r0Znphd3qDMvAXYvWa4kc5zEsb5UPY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"status\": \"inactive\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/users/6953d7e7f79ce83769e8ccf0/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"6953d7e7f79ce83769e8ccf0",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Activate User",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NTNmOWI4MDkyMGVlZmE2NWM5MDcyYiIsImlhdCI6MTc2NzExMTY0MiwiZXhwIjoxNzY3MTk4MDQyfQ.Pd1HantHoQIx3r0Znphd3qDMvAXYvWa4kc5zEsb5UPY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"status\": \"active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/users/6953d7e7f79ce83769e8ccf0/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"6953d7e7f79ce83769e8ccf0",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
