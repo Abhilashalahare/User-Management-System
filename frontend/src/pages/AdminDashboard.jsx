@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../api";
 import { toast } from "react-toastify";
 import { FaEdit, FaTrash, FaUserEdit, FaTimes, FaSave } from "react-icons/fa";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -59,7 +60,7 @@ const AdminDashboard = () => {
     }
   };
 
-  if (loading) return <div className="text-center mt-10">Loading users...</div>;
+  if (loading) return <LoadingSpinner />;
 
   return (
     <div className="container mx-auto mt-10 px-4">
