@@ -15,7 +15,11 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "*", // Allow all origins (easiest for deployment)
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  credentials: true
+}));
 app.use(helmet());
 app.use(morgan('dev'));
 
